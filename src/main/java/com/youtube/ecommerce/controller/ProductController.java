@@ -50,16 +50,19 @@ public class ProductController {
         return imageModels;
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @GetMapping({"/getAllProducts"})
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @GetMapping({"/getProductDetailsById/{productId}"})
     public Product getProductDetailsById(@PathVariable("productId") Integer productId) {
         return productService.getProductDetailsById(productId);
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @DeleteMapping({"/deleteProductDetails/{productId}"})
     public void deleteProductDetails(@PathVariable("productId") Integer productId) {
         productService.deleteProductDetails(productId);
