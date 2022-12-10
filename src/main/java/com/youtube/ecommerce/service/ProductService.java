@@ -20,9 +20,17 @@ public class ProductService {
         return productDao.save(product);
     }
 
-    public List<Product> getAllProducts(int pageNumber) {
+    public List<Product> getAllProducts(int pageNumber, String searchKey) {
         Pageable pageable = PageRequest.of(pageNumber,12);
-        return (List<Product>) productDao.findAll(pageable);
+
+        if(searchKey.equals("")) {
+            return (List<Product>) productDao.findAll(pageable);
+        } else {
+            return (List<Product>) productDao.findByProductNameContainingIgnoreCaseOrProductDescriptionContainingIgnoreCase(
+                    searchKey, searchKey, pageable
+            );
+        }
+
     }
 
     public Product getProductDetailsById(Integer productId) {
