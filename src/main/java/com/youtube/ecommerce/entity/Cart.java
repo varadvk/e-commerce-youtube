@@ -14,6 +14,10 @@ public class Cart {
     @OneToOne
     private User user;
 
+    public Cart(){
+
+    }
+
     public Cart(Product product, User user) {
         this.product = product;
         this.user = user;
